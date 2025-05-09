@@ -1,0 +1,9 @@
+.client-list .client-slide {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+body{
+    color:black;
+}
