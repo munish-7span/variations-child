@@ -20,7 +20,7 @@
 				background: true,
 				text: true,
 				gradients: true,
-				link: true,
+				link: false,
 				heading: true,
 				enableContrastChecker: true,
 			},
@@ -99,14 +99,23 @@
                                     },
                                 },
                             [
-                            el(index === 0 ? 'h1' : 'h2', {}, item.heading),
-                            el('h3', {}, item.title),
-                            el('p', {}, item.description),
-                            item.buttonURL && item.buttonLabel && el('a', {
-                                href: item.buttonURL,
-                                className: 'repeater-button',
-                                
-                            }, item.buttonLabel),
+                                el('div', {className: 'hero-slide-content'}, [
+                                    item.heading && el(index === 0 ? 'h1' : 'h2', {}, item.heading),
+                                    item.title && el('h3', {}, item.title),
+                                    item.description && el('p', {}, item.description),
+                                    item.buttonURL && item.buttonLabel && el('a', {
+                                        href: item.buttonURL,
+                                        className: 'mp-hero-button',
+                                        style: {
+                                            display: 'inline-block',
+                                            background: '#000',
+                                            color: '#fff',
+                                            padding: '10px 20px',
+                                            textDecoration: 'none',
+                                            marginTop: '10px'
+                                        }
+                                    }, item.buttonLabel),
+                                ]),
                             
                         ])
                     )
@@ -208,23 +217,25 @@
                             padding: '50px',
                         }
                     }, [
-                        // Render <h1> for first item, <h2> otherwise
-                        wp.element.createElement(index === 0 ? 'h1' : 'h2', {}, item.heading),
-                        wp.element.createElement('h3', {}, item.title),
-                        wp.element.createElement('p', {}, item.description),
-                        item.buttonURL && item.buttonLabel &&
-                        wp.element.createElement('a', {
-                            href: item.buttonURL,
-                            className: 'mp-hero-button',
-                            style: {
-                                display: 'inline-block',
-                                background: '#000',
-                                color: '#fff',
-                                padding: '10px 20px',
-                                textDecoration: 'none',
-                                marginTop: '10px'
-                            }
-                        }, item.buttonLabel)
+                        wp.element.createElement('div', { className: 'hero-slider-content' },[
+                            // Render <h1> for first item, <h2> otherwise
+                            item.heading && wp.element.createElement(index === 0 ? 'h1' : 'h2', {}, item.heading),
+                            item.title && wp.element.createElement('h3', {}, item.title),
+                            item.description && wp.element.createElement('p', {}, item.description),
+                            item.buttonURL && item.buttonLabel &&
+                            wp.element.createElement('a', {
+                                href: item.buttonURL,
+                                className: 'mp-hero-button',
+                                style: {
+                                    display: 'inline-block',
+                                    background: '#000',
+                                    color: '#fff',
+                                    padding: '10px 20px',
+                                    textDecoration: 'none',
+                                    marginTop: '10px'
+                                }
+                            }, item.buttonLabel)
+                        ])
                     ])
                 )
             )

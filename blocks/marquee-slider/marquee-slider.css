@@ -1,0 +1,69 @@
+label.components-base-control__label{
+    font-size: 11px;
+    font-weight: 500;
+    line-height: 1.4;
+    text-transform: uppercase;
+    display: block;
+    margin-bottom: calc(8px);
+    padding: 0px;
+}
+
+.mp-marquee-slider {
+  overflow: hidden;
+  position: relative;
+  display: flex;
+  width: 100%;
+}
+.block-editor-block-list__block .mp-marquee-slider{
+    flex-direction: column;
+}
+.marquee-track {
+  display: flex;
+  animation: marquee 30s linear infinite;
+  white-space: nowrap;
+}
+
+.marquee-list-item {
+  display: flex;
+  gap: 2rem;
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.list-item {
+  white-space: nowrap;
+  font-size: 1.2rem;
+  color: #000;
+}
+.marquee-gallery{
+    display: flex;
+    gap:20px;
+}
+.marquee-qallery-item{
+    max-width:300px;
+    height: auto;
+}
+.marquee-qallery-item img{
+    width: 100%;
+    height:100%;
+    object-fit: contain;
+    object-position: center;
+}
+
+/* Duplicate content to simulate infinite loop */
+.wp-block-custom-mp-marquee-slider .marquee-track:nth-child(2) {
+  position: absolute;
+  left: 100%;
+  top: 0;
+}
+
+/* Keyframes for animation */
+@keyframes marquee {
+  0% {
+    transform: translateX(0%);
+  }
+  100% {
+    transform: translateX(-100%);
+  }
+}

@@ -1,13 +1,12 @@
 jQuery(document).ready(function($) {
-    // Initialize Slick Slider
-    $('.mp-hero-slider, .mp-hero-slider .block-editor-block-list__block ').slick({
+    $('.mp-hero-slider').slick({
         autoplay: true,
-        autoplaySpeed: 3000,
+        autoplaySpeed: 5000,
         dots: true,
         arrows: true,
         infinite: true,
-        speed: 500,
-        fade: false,
+        speed: 1000,
+        fade: true,
         cssEase: 'linear'
     });
 });

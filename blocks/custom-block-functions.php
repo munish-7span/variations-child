@@ -15,8 +15,18 @@ function my_custom_block_enqueue() {
 
     // Add Hero Section Block
     wp_enqueue_script(
-        'hero-slider', // Add handler
+        'mp-hero-slider', // Add handler
         get_stylesheet_directory_uri() . '/blocks/Hero Slider/hero-slider.js', // Place this file in your theme root
+        ['wp-blocks', 'wp-element', 'wp-editor'], // Dependencies from WP
+        false,
+        true
+    );
+    
+
+    // Add Marqueee Slider
+    wp_enqueue_script(
+        'mp-marquee-slider', // Add handler
+        get_stylesheet_directory_uri() . '/blocks/marquee-slider/marquee-slider.js', // Place this file in your theme root
         ['wp-blocks', 'wp-element', 'wp-editor'], // Dependencies from WP
         false,
         true
@@ -85,6 +95,17 @@ function enqueue_custom_block_assets() {
             filemtime(get_stylesheet_directory() . '/blocks/user-profile/user-profile.css')
         );
     }
+
+    if (has_block('custom/mp-marquee-slider')) {
+        wp_enqueue_style(
+            'mp-marquee-slider-style',
+            get_stylesheet_directory_uri() . '/blocks/marquee-slider/marquee-slider.css',
+            array(),
+            filemtime(get_stylesheet_directory() . '/blocks/marquee-slider/marquee-slider.css')
+        );
+    }
+
+
 }
 add_action('enqueue_block_assets', 'enqueue_custom_block_assets');
 
@@ -104,3 +125,10 @@ function my_custom_blocks(){
     add_filter('block_categories_all', 'my_custom_block_category', 10, 2);
 }
 add_action('init', 'my_custom_blocks');
+
+
+function allow_svg_uploads($mimes) {
+	$mimes['svg'] = 'image/svg+xml';
+	return $mimes;
+}
+add_filter('upload_mimes', 'allow_svg_uploads');
