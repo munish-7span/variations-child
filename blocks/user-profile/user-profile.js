@@ -8,7 +8,7 @@
 	registerBlockType( 'custom/my-block', {
 		title: 'User Profile',
 		icon: 'format-image',
-		category: 'common',
+		category: 'variation-child-category',
 		supports: {
 			align: [ 'left', 'center', 'right', 'wide', 'full' ],
 			anchor: true,
@@ -76,7 +76,11 @@
 		edit: function (props) {
             const { attributes, setAttributes } = props;
             const { heading, imageURL, username, content, repeaterItems } = attributes;
-            const blockProps = useBlockProps();
+            const blockProps = useBlockProps({
+                style: {
+                    minHeight: '200px', // Force visible size
+                }
+            });
             const { createElement: el, Fragment } = element;
 
             function onSelectImage(media) {
